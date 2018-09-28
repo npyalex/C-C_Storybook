@@ -43,7 +43,7 @@ function setup() {
      print('Array is this long ' + (arr.length).toString());
 
      // Generate a random index for the image to be displayed -- look out for 12 index
-     i = int(random(0, (arr.length - 1)));
+     i = int(random(0, arr.length));
 
      print('Random index is ' + i.toString());
      
