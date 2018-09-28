@@ -4,7 +4,7 @@ var wrd1, wrd2, wrd3, wrd4;
 var imgBank = []; // Array for the image prompts
 var wrdBank = []; // Array for the word prompts
 var arr = []; // A test array
-var i; // Random index based on arr length
+var a, b, c, d; // Random index based on arr length
 
 function preload() {
     img1 = loadImage('image-01.jpg');
@@ -43,20 +43,31 @@ function setup() {
      print('Array is this long ' + (arr.length).toString());
 
      // Generate a random index for the image to be displayed -- index will be between 0 and lenght - 1
-     i = int(random(0, arr.length));
+     a = int(random(0, arr.length));
+     b = int(random(0, arr.length));
+     c = int(random(0, arr.length));
+     d = int(random(0, arr.length));
 
-     print('Random index is ' + i.toString());
-     
+     print('Random index a is ' + a.toString());
+     print('Random index b is ' + b.toString());
+     print('Random index c is ' + c.toString());
+     print('Random index d is ' + d.toString());     
 }
 
 function draw() {
     background(50);
     // Get a random image from the array
-    var img = arr[i];
+    var imgA = arr[a];
+    var imgB = arr[b];
+    var imgC = arr[c];
+    var imgD = arr[d];
+
     
     // Display the image at (0,0) at half its size
-    image(img, 0, 0, img.width/2, img.height/2);
-    
+    image(imgA, 0, 0, imgA.width/4, imgA.height/4);
+    image(imgB, imgA.width/4, 0, imgB.width/4, imgB.height/4);
+    image(imgC, 0, imgB.height/4, imgC.width/4, imgC.height/4);
+    image(imgD, imgC.width/4, imgC.height/4, imgD.width/4, imgD.height/4);
 }
 
 /* Make the canvas responsive -- automatically resize the window */
