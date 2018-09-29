@@ -4,6 +4,7 @@ var mouseTopLeft = false;
 var mouseTopRight = false;
 var mouseBottomLeft = false;
 var mouseBottomRight = false;
+var mouseIsClickable = false;
 var userClicked = false;
 
 /* Canvas is the size of the window */
@@ -20,24 +21,6 @@ function draw() {
 /* no matter the window size (x,y) will refer to the centre point */
     var d = dist(mouseX,mouseY,x,y); //the distance of the pointer from the centre of the screen
 
-if ((mouseX<x)&&(mouseY<y)) {
-    mouseTopLeft = true;
-    print('the mouse is in the top left');
-    }
-if ((mouseX>x)&&(mouseY<y)) {
-    mouseTopRight = true;
-    print('the mouse is in the top right');
-    }
-if ((mouseX<x)&&(mouseY>y)) {
-    mouseBottomLeft = true;
-    print('the mouse is in the bottom left');
-    }
-if ((mouseX>x)&&(mouseY>y)) {
-    mouseBottomRight = true;
-    print('the mouse is in the bottom right');
-    }
-
-        
 //print('the current screen is',screenState);
 
 if (screenState == 0) { //opening screen
@@ -45,14 +28,38 @@ if (screenState == 0) { //opening screen
 
     ellipse (x,y,100,100); //circle at x,y,width,height
     fill (0,255,0); //green
-/* if mouse is in the circle and clicked, add 1 to the ScreenState count and move to the next screen */   
-    if ((d < radius) && (userClicked == true)) {
+    if (d < radius) {
+        mouseIsClickable = true;
+    } else {
+        mouseIsClickable = false;
+    }
+    if ((mouseIsClickable == true) && (userClicked == true)) {
  //       print('the circle is being clicked');
 //        print('current screen is',screenState);
         nextScreen();
         }
 }
 if (screenState == 1) {
+    if ((mouseX<x)&&(mouseY<y)) {
+        mouseTopLeft = true;
+        mouseIsClickable = true;
+        print('the mouse is in the top left');
+    }
+    if ((mouseX>x)&&(mouseY<y)) {
+        mouseTopRight = true;
+        mouseIsClickable = true;
+        print('the mouse is in the top right');
+    }
+    if ((mouseX<x)&&(mouseY>y)) {
+        mouseBottomLeft = true;
+        mouseIsClickable = true;
+        print('the mouse is in the bottom left');
+    }
+    if ((mouseX>x)&&(mouseY>y)) {
+        mouseBottomRight = true;
+        mouseIsClickable = true;
+        print('the mouse is in the bottom right');
+    }
    fill(255);
    rect (0,0,x,y); // top left
    rect (x,0,x,y); //top right
@@ -77,9 +84,9 @@ if (screenState == 1) {
 }
 function mouseClicked()
 {
-    if (userClicked == false) {
+    if ((userClicked == false) && (mouseIsClickable)) {
     userClicked = true;
-        }
+            }
 }
 function windowResized()
 {
@@ -88,7 +95,7 @@ function windowResized()
 
 function nextScreen()
 {
-        screenState++;
-        userClicked = false;
-        background(200);
+    userClicked = false;    
+    screenState++;
+    background(200);
 }
