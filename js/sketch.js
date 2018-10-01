@@ -7,6 +7,8 @@ var arr = []; // A test array
 var a, b, c, d; // Random index based on arr length
 var storyImg; // The user's image choice
 var storyCpt; // The user's caption choice
+var q1Clicked, q2Clicked, q3Clicked, q4Clicked = false; // Boolean to register user's clicks
+var stryStage; // A counter to check what level user is at - Go screen (0), Images (1) Captions (2)
 
 function preload() {
     img1 = loadImage('image-01.jpg');
