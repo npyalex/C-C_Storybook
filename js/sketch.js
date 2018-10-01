@@ -46,6 +46,7 @@ function setup() {
 
      print('Array is this long ' + (arr.length).toString());
 
+
      // Generate a random index for the image to be displayed -- index will be between 0 and lenght - 1
      a = int(random(0, arr.length));
      b = int(random(0, arr.length));
@@ -56,6 +57,10 @@ function setup() {
      print('Random index b is ' + b.toString());
      print('Random index c is ' + c.toString());
      print('Random index d is ' + d.toString());
+
+     // Generate a random index for the image to be displayed -- look out for 12 index
+     i = int(random(0, arr.length));
+
 
      // Story just beginning - set story stage to 0
      stryStage = 0;
