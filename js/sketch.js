@@ -7,8 +7,6 @@ var arr = []; // A test array
 var a, b, c, d; // Random index based on arr length
 var storyImg; // The user's image choice
 var storyCpt; // The user's caption choice
-var q1Clicked, q2Clicked, q3Clicked, q4Clicked = false; // Boolean to register user's clicks
-var stryStage; // A counter to check what level user is at - Go screen (0), Images (1) Captions (2) 
 
 function preload() {
     img1 = loadImage('image-01.jpg');
@@ -29,7 +27,7 @@ function preload() {
 function setup() {
      canvas = createCanvas(windowWidth, windowHeight);
      canvas.style('display', 'block');
-     /* Test array functionality 
+     /* Test array functionality
         - Use a loop */
      arr.push(img1);
      arr.push(img2);
@@ -43,7 +41,7 @@ function setup() {
      arr.push(img10);
      arr.push(img11);
      arr.push(img12);
-     
+
      print('Array is this long ' + (arr.length).toString());
 
      // Generate a random index for the image to be displayed -- index will be between 0 and lenght - 1
@@ -68,8 +66,8 @@ function draw() {
     var imgC = arr[c];
     var imgD = arr[d];
 
-    
-    // Display the image at the center of each quadrant of the screen. 
+
+    // Display the image at the center of each quadrant of the screen.
     imageMode(CENTER);
     image(imgA, width/4, height/4, imgA.width/8, imgA.height/8);
     image(imgB, (3*width)/4, height/4, imgB.width/8, imgB.height/8);
@@ -81,6 +79,7 @@ function draw() {
         background(0);
         imageMode(CENTER);
         image(imgA, width/2, height/2, imgA.width/8, imgA.height/8);
+        var storyImg = imgA;
         // Save imgA
     } else if(q2Clicked && (stryStage == 0)){
         // Save imgB
@@ -88,8 +87,8 @@ function draw() {
         // Save imgC
     } else if(q4Clicked && (stryStage == 0)){
         // Save imgD
-    } 
-    
+    }
+
     // Save the captions
     if(q1Clicked && (stryStage == 1)){
         // Save the cptA
@@ -112,7 +111,7 @@ function mousePressed() {
         // Check which part of the screen we are in
         if((x < width/2) && (y < height/2)){
             // First Quadrant Top Left - change q1Clicked
-            q1Clicked = true; 
+            q1Clicked = true;
             // Set other quadrants to false
             q2Clicked = false;
             q3Clicked = false;
