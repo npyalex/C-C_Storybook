@@ -153,6 +153,7 @@ function draw() {
           image(imgC, width/4, (3*height)/4, imgC.width/2, imgC.height/2);
           image(imgD, (3*width)/4, (3*height)/4, imgD.width/2, imgD.height/2);
           textAlign(CENTER);
+          fill(0);
           textSize(16);
           text("What's your picture?", width/2, height/2);
 
