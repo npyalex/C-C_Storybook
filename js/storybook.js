@@ -139,12 +139,12 @@ function draw() {
           imageMode(CENTER);
           image(title,x,y/2,title.width,title.height);
          textAlign(CENTER);
-         fill(255);
-         textSize(16);
+         fill(0);
+         textSize(24);
          image(startButton,x,y,startButton.width,startButton.height);
         //  ellipse (x,y,100,100); //circle at x,y,width,height
         //  fill (0,255,0); //green
-       //   text("Let's all make a storybook! Tap START to do your part!",x,y*1.25);
+        text("Let's all make a storybook! Tap START to do your part!",x,height*0.65);
           if (diameter < radius) {
                mouseIsClickable = true;
           } else {
@@ -181,7 +181,7 @@ function draw() {
           textAlign(CENTER);
           fill(0);
           textSize(16);
-          text("What's your picture?", width/2, height/2);
+          text("Choose a picture for your page", width/2, height/2);
 
           // Save the images
           if(userClicked == true){
@@ -230,7 +230,7 @@ function draw() {
           text(cptC, 0, height/2, bW, bH);
           text(cptD, width/2, height/2, bW, bH);
           textSize(16);
-          text("What's your caption?", width/2, height/2);
+          text("Choose a caption for your picture", width/2, height/2);
           // Save the captions
           if(userClicked == true){
                // User clicks screen - check which quadrant.
@@ -256,7 +256,7 @@ function draw() {
           background(255);
           textAlign(CENTER);
           textSize(16);
-          text("Tap to reveal your story page", width/2, height/2);
+          text("Lay your page down with the others. Tap when you're ready to read!", width/2, height/2);
 
           if(userClicked){
                nextScreen();
