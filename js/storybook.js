@@ -8,7 +8,7 @@ var mouseIsClickable = false;
 var userClicked = false;
 
 var canvas;
-var img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12;
+var img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15;
 var cpt1, cpt2, cpt3, cpt4, cpt5, cpt6, cpt7, cpt8, cpt9, cpt10, cpt11, cpt12;
 var imgBank = []; // Array for the image prompts
 var wrdBank = []; // Array for the word prompts
@@ -30,6 +30,9 @@ function preload() {
     img10 = loadImage('image-10.jpg');
     img11 = loadImage('image-11.jpg');
     img12 = loadImage('image-12.jpg');
+    img13 = loadImage('image-13.jpg');
+    img14 = loadImage('image-14.jpg');
+    img15 = loadImage('image-15.jpg');
 }
 
 /* Canvas is the size of the window */
@@ -53,7 +56,10 @@ function setup() {
      arr.push(img10);
      arr.push(img11);
      arr.push(img12);
-
+     arr.push(img13);
+     arr.push(img14);
+     arr.push(img15);
+    
      print('Array is this long ' + (arr.length).toString());
 
      // Generate a random index for the image to be displayed -- index will be between 0 and lenght - 1
@@ -136,7 +142,7 @@ function draw() {
 
           // Display the image at the center of each quadrant of the screen.
           imageMode(CENTER);
-          image(imgA, width/4, height/4, imgA.width/8, imgA.height/8);
+          image(imgA, width/4, height/4, imgA.width, imgA.height/8);
           image(imgB, (3*width)/4, height/4, imgB.width/8, imgB.height/8);
           image(imgC, width/4, (3*height)/4, imgC.width/8, imgC.height/8);
           image(imgD, (3*width)/4, (3*height)/4, imgD.width/8, imgD.height/8);
@@ -205,6 +211,7 @@ function draw() {
 
      if (screenState == 3) { //fourth screen. show the images & text you picked
           // Final display boundaries
+          strokeWeight(0);
           fill(200);
           rect (0,0,width,(height*0.75)); // top, 3/4 of the screen
           rect (0,(height*0.75),width,y); //bottom
@@ -224,7 +231,7 @@ function draw() {
 }
 
 /* Track the user's mouse clicks */
-function mouseClicked(){
+function mouseClicked(){ // RN this is tracking whether the user has clicked ever - ought to track an actual click
      if ((userClicked == false) && (mouseIsClickable)) {
           userClicked = true;
      }
