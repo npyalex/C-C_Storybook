@@ -9,6 +9,8 @@ var userClicked = false;
 
 var canvas;
 var img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16;
+var title;
+var startButton;
 var cpt1, cpt2, cpt3, cpt4, cpt5, cpt6, cpt7, cpt8, cpt9, cpt10, cpt11, cpt12;
 var imgBank = []; // Array for the image prompts
 var wrdBank = []; // Array for the word prompts
@@ -36,6 +38,8 @@ function preload() {
     img14 = loadImage('image-14.jpg');
     img15 = loadImage('image-15.jpg');
     img16 = loadImage('image-16.jpg');
+    title = loadImage('title-with-names.jpg');
+    startButton = loadImage('startButton.jpg');
 }
 
 /* Canvas is the size of the window */
@@ -91,7 +95,23 @@ function setup() {
      wrdBank.push("They played together.");
      wrdBank.push("They sang together.");
      wrdBank.push("They argued together.");
-
+     wrdBank.push("They told each other stories.");
+     wrdBank.push("They had a great time!");
+     wrdBank.push("They didn't have a great time.");
+     wrdBank.push("They were friends.");
+     wrdBank.push("They stopped being friends.");
+     wrdBank.push("The princess loved it!");
+     wrdBank.push("The dragon loved it!");
+     wrdBank.push("The dragon tried to eat the princess.");
+     wrdBank.push("The princess tried to slay the dragon.");
+     wrdBank.push("They taught each other songs.");
+     wrdBank.push("The dragon felt sick.");
+     wrdBank.push("The princess felt sick.");
+     wrdBank.push("They had fun.");
+     wrdBank.push("They didn't have fun.");
+     wrdBank.push("The princess was happy.");
+     wrdBank.push("The dragon was happy.");
+    
      print('Word Bank is this long ' + (wrdBank.length).toString());
 
      // Generate a random index for the captions
@@ -116,9 +136,15 @@ function draw() {
 
      if (screenState == 0) { //opening screen. green circle on grey background. only the circle is clickable.
           background (255);
-
-          ellipse (x,y,100,100); //circle at x,y,width,height
-          fill (0,255,0); //green
+          imageMode(CENTER);
+          image(title,x,y/2,title.width,title.height);
+         textAlign(CENTER);
+         fill(255);
+         textSize(16);
+         image(startButton,x,y,startButton.width,startButton.height);
+        //  ellipse (x,y,100,100); //circle at x,y,width,height
+        //  fill (0,255,0); //green
+       //   text("Let's all make a storybook! Tap START to do your part!",x,y*1.25);
           if (diameter < radius) {
                mouseIsClickable = true;
           } else {
