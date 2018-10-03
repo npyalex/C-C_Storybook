@@ -8,8 +8,8 @@ var mouseIsClickable = false;
 var userClicked = false;
 
 var canvas;
-var img1, img2, img3, img4, img5, img5, img6, img7, img8, img9, img10, img11, img12;
-var wrd1, wrd2, wrd3, wrd4;
+var img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12;
+var cpt1, cpt2, cpt3, cpt4, cpt5, cpt6, cpt7, cpt8, cpt9, cpt10, cpt11, cpt12;
 var imgBank = []; // Array for the image prompts
 var wrdBank = []; // Array for the word prompts
 var arr = []; // A test array
@@ -62,16 +62,38 @@ function setup() {
      c = int(random(0, arr.length));
      d = int(random(0, arr.length));
 
+
      print('Random index a is ' + a.toString());
      print('Random index b is ' + b.toString());
      print('Random index c is ' + c.toString());
      print('Random index d is ' + d.toString());
 
+     /* Array of functions */
+     wrdBank.push("They tried to make friends.");
+     wrdBank.push("It didn't go well.");
+     wrdBank.push("It went great!");
+     wrdBank.push("The princess got angry.");
+     wrdBank.push("The dragon got angry.");
+     wrdBank.push("The princess thought it was funny.");
+     wrdBank.push("The dragon thought it was funny.");
+     wrdBank.push("They didn't like one another.");
+     wrdBank.push("The dragon felt sad.");
+     wrdBank.push("They played together.");
+     wrdBank.push("They sang together.");
+     wrdBank.push("They argued together.");
+
+     print('Word Bank is this long ' + (wrdBank.length).toString());
+
      // Generate a random index for the captions
-     e = int(random(0, arr.length));
-     f = int(random(0, arr.length));
-     g = int(random(0, arr.length));
-     h = int(random(0, arr.length));
+     e = int(random(0, wrdBank.length));
+     f = int(random(0, wrdBank.length));
+     g = int(random(0, wrdBank.length));
+     h = int(random(0, wrdBank.length));
+
+     print('Random index e is ' + e.toString());
+     print('Random index f is ' + f.toString());
+     print('Random index g is ' + g.toString());
+     print('Random index h is ' + h.toString());
 }
 
 function draw() {
@@ -80,7 +102,7 @@ function draw() {
      /* no matter the window size (x,y) will refer to the centre point */
      var diameter = dist(mouseX,mouseY,x,y); //the distance of the pointer from the centre of the screen
 
-     print('The current screen is',screenState);
+     // print('The current screen is',screenState);
 
      if (screenState == 0) { //opening screen. green circle on grey background. only the circle is clickable.
           background (200); //grey
@@ -110,11 +132,7 @@ function draw() {
           trackMouse(x,y);
 
           // Draw the rectangle borders
-          fill(255);
-          rect (0,0,x,y); // top left
-          rect (x,0,x,y); //top right
-          rect (0,y,x,y); //bottom left
-          rect (x,y,x,y); //bottom right
+          drawBorders(x,y);
 
           // Display the image at the center of each quadrant of the screen.
           imageMode(CENTER);
@@ -124,54 +142,68 @@ function draw() {
           image(imgD, (3*width)/4, (3*height)/4, imgD.width/8, imgD.height/8);
 
           if ((mouseTopLeft == true) && (userClicked == true)) {
-               //if the mouse is in the top left and clicked, store the variable that was loaded here
-               // Save imgA
+               // If the mouse is in the top left and clicked, store the variable that was loaded here - save imgA
                storyImg = imgA;
-
-               // nextScreen();
+               nextScreen();
           }
           if ((mouseTopRight == true) && (userClicked == true)) {
+               storyImg = imgB;
                nextScreen();
-               // store the choice
           }
           if ((mouseBottomLeft == true) && (userClicked == true)) {
+               storyImg = imgC;
                nextScreen();
-               // store the choice
           }
           if ((mouseBottomRight == true) && (userClicked == true)) {
+               storyImg = imgD;
                nextScreen();
-               // store the choice
           }
      }
 
      if (screenState == 2) { //third screen. Four rectangles holding text. "Choose your text"
+          // Get a random image from the array
+          var cptA = wrdBank[e];
+          var cptB = wrdBank[f];
+          var cptC = wrdBank[g];
+          var cptD = wrdBank[h];
+
           // Track the mouse coordinates
           trackMouse();
 
-          fill(200);
-          rect (0,0,x,y); // top left
-          rect (x,0,x,y); //top right
-          rect (0,y,x,y); //bottom left
-          rect (x,y,x,y); //bottom right
-          if ((mouseTopLeft == true) && (userClicked == true)) { //if the mouse is in the top left and clicked, store the variable that was loaded here
+          // Draw the rectangle borders
+          drawBorders(x,y);
+
+          // Display the text at the center of each quadrant of the screen.
+          textAlign(CENTER);
+          fill(0);
+          text(cptA, width/4, height/4);
+          text(cptB, (3*width)/4, height/4);
+          text(cptC, width/4, (3*height)/4);
+          text(cptD, (3*width)/4, (3*height)/4);
+
+          if ((mouseTopLeft == true) && (userClicked == true)) {
+               // If the mouse is in the top left and clicked, store the variable that was loaded here -- Save the caption
+               storyCpt = cptA;
                nextScreen();
           }
           if ((mouseTopRight == true) && (userClicked == true)) {
+               storyCpt = cptB;
                nextScreen();
                // store the choice
           }
           if ((mouseBottomLeft == true) && (userClicked == true)) {
+               storyCpt = cptC;
                nextScreen();
                // store the choice
           }
           if ((mouseBottomRight == true) && (userClicked == true)) {
+               storyCpt = cptD;
                nextScreen();
                // store the choice
           }
      }
 
      if (screenState == 3) { //fourth screen. show the images & text you picked
-
           // Final display boundaries
           fill(200);
           rect (0,0,width,(height*0.75)); // top, 3/4 of the screen
@@ -180,6 +212,14 @@ function draw() {
           // Draw the final image & text
           imageMode(CENTER);
           image(storyImg, width/2, (3*height)/8, storyImg.width/8, storyImg.height/8);
+
+          fill(0);
+          textAlign(CENTER);
+          text(storyCpt, width/2, (7*height)/8);
+
+          // If user clicks screen advance to next screen
+          print(userClicked);
+
      }
 }
 
@@ -226,4 +266,13 @@ function trackMouse(x,y) {
           mouseIsClickable = true;
           print('the mouse is in the bottom right');
      }
+}
+
+/* A function to draw the quadrant's borders */
+function drawBorders(x,y) {
+     fill(255);
+     rect (0,0,x,y); // top left
+     rect (x,0,x,y); //top right
+     rect (0,y,x,y); //bottom left
+     rect (x,y,x,y); //bottom right
 }
