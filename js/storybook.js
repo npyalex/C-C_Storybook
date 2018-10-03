@@ -17,6 +17,8 @@ var a, b, c, d, e, f, g, h; // Random index based on arr length
 var storyImg; // The user's image choice
 var storyCpt; // The user's caption choice
 
+var q1Clicked, q2Clicked, q3Clicked, q4Clicked = false; // Boolean to register user's clicks
+
 function preload() {
     img1 = loadImage('image-01.jpg');
     img2 = loadImage('image-02.jpg');
@@ -105,7 +107,7 @@ function draw() {
      // print('The current screen is',screenState);
 
      if (screenState == 0) { //opening screen. green circle on grey background. only the circle is clickable.
-          background (200); //grey
+          background (255);
 
           ellipse (x,y,100,100); //circle at x,y,width,height
           fill (0,255,0); //green
@@ -128,6 +130,8 @@ function draw() {
           var imgC = arr[c];
           var imgD = arr[d];
 
+          background(255);
+
           // Track the mouse location
           trackMouse(x,y);
 
@@ -141,21 +145,22 @@ function draw() {
           image(imgC, width/4, (3*height)/4, imgC.width/8, imgC.height/8);
           image(imgD, (3*width)/4, (3*height)/4, imgD.width/8, imgD.height/8);
 
-          if ((mouseTopLeft == true) && (userClicked == true)) {
-               // If the mouse is in the top left and clicked, store the variable that was loaded here - save imgA
-               storyImg = imgA;
-               nextScreen();
-          }
-          if ((mouseTopRight == true) && (userClicked == true)) {
-               storyImg = imgB;
-               nextScreen();
-          }
-          if ((mouseBottomLeft == true) && (userClicked == true)) {
-               storyImg = imgC;
-               nextScreen();
-          }
-          if ((mouseBottomRight == true) && (userClicked == true)) {
-               storyImg = imgD;
+          // Save the images
+          if(userClicked == true){
+               // User clicks screen - check which quadrant.
+               if(q1Clicked){
+                    // Save imgA
+                    storyImg = imgA;
+               } else if(q2Clicked){
+                    // Save imgB
+                    storyImg = imgB;
+               } else if(q3Clicked){
+                    // Save imgC
+                    storyImg = imgC;
+               } else if(q4Clicked){
+                    // Save imgD
+                    storyImg = imgD;
+               }
                nextScreen();
           }
      }
@@ -167,45 +172,61 @@ function draw() {
           var cptC = wrdBank[g];
           var cptD = wrdBank[h];
 
+          background(255);
+
           // Track the mouse coordinates
           trackMouse();
 
           // Draw the rectangle borders
           drawBorders(x,y);
 
-          // Display the text at the center of each quadrant of the screen.
-          textAlign(CENTER);
-          fill(0);
-          text(cptA, width/4, height/4);
-          text(cptB, (3*width)/4, height/4);
-          text(cptC, width/4, (3*height)/4);
-          text(cptD, (3*width)/4, (3*height)/4);
+          var bW = width/2;
+          var bH = height/2;
 
-          if ((mouseTopLeft == true) && (userClicked == true)) {
-               // If the mouse is in the top left and clicked, store the variable that was loaded here -- Save the caption
-               storyCpt = cptA;
+          // Display the text at the center of each quadrant of the screen.
+          fill(0);
+          textAlign(CENTER, CENTER);
+          textSize(12);
+          text(cptA, 0, 0, bW, bH);
+          text(cptB, width/2, 0, bW, bH);
+          text(cptC, 0, height/2, bW, bH);
+          text(cptD, width/2, height/2, bW, bH);
+
+          // Save the captions
+          if(userClicked == true){
+               // User clicks screen - check which quadrant.
+               if(q1Clicked){
+                    // Save cptA
+                    storyCpt = cptA;
+               } else if(q2Clicked){
+                    // Save cptB
+                    storyCpt = cptB;
+               } else if(q3Clicked){
+                    // Save cptC
+                    storyCpt = cptC;
+               } else if(q4Clicked){
+                    // Save cptD
+                    storyCpt = cptD;
+               }
                nextScreen();
-          }
-          if ((mouseTopRight == true) && (userClicked == true)) {
-               storyCpt = cptB;
-               nextScreen();
-               // store the choice
-          }
-          if ((mouseBottomLeft == true) && (userClicked == true)) {
-               storyCpt = cptC;
-               nextScreen();
-               // store the choice
-          }
-          if ((mouseBottomRight == true) && (userClicked == true)) {
-               storyCpt = cptD;
-               nextScreen();
-               // store the choice
           }
      }
 
-     if (screenState == 3) { //fourth screen. show the images & text you picked
+     if (screenState == 3 ){
+          // Blank screen - Tap this screen to reveal story page
+          background(255);
+          textAlign(CENTER);
+          textSize(16);
+          text("Tap to reveal story page", width/2, height/2);
+
+          if(userClicked){
+               nextScreen();
+          }
+     }
+
+     if (screenState == 4) { //fourth screen. show the images & text you picked
           // Final display boundaries
-          fill(200);
+          fill(255);
           rect (0,0,width,(height*0.75)); // top, 3/4 of the screen
           rect (0,(height*0.75),width,y); //bottom
 
@@ -216,10 +237,6 @@ function draw() {
           fill(0);
           textAlign(CENTER);
           text(storyCpt, width/2, (7*height)/8);
-
-          // If user clicks screen advance to next screen
-          print(userClicked);
-
      }
 }
 
@@ -271,8 +288,46 @@ function trackMouse(x,y) {
 /* A function to draw the quadrant's borders */
 function drawBorders(x,y) {
      fill(255);
+     stroke(220);
      rect (0,0,x,y); // top left
      rect (x,0,x,y); //top right
      rect (0,y,x,y); //bottom left
      rect (x,y,x,y); //bottom right
+}
+
+/* An event listener to track which quadrant the user has clicked and set the final image & caption picked by user */
+function mousePressed() {
+        // Get the coordinates where the mouse was clicked
+        var x = mouseX;
+        var y = mouseY;
+        print('Mouse was pressed at (' + mouseX.toString() + ' ,' + mouseY.toString() + ')');
+        // Check which part of the screen we are in
+        if((x < width/2) && (y < height/2)){
+            // First Quadrant Top Left - change q1Clicked
+            q1Clicked = true;
+            // Set other quadrants to false
+            q2Clicked = false;
+            q3Clicked = false;
+            g4Clicked = false;
+        } else if((x > width/2) && (y < height/2)){
+            // Second Quadrant Top Right - change q2Clicked
+            q2Clicked = true;
+            q1Clicked = false;
+            q3Clicked = false;
+            g4Clicked = false;
+
+        } else if((x < width/2) && (y > height/2)){
+            // Third Quadrant Bottom Left - change q3Clicked
+            q3Clicked = true;
+            q1Clicked = false;
+            q2Clicked = false;
+            g3Clicked = false;
+
+        } else {
+            // Fourth Quadrant Bottom Right - change q4Clicked
+            q4Clicked = true;
+            q1Clicked = false;
+            q2Clicked = false;
+            g3Clicked = false;
+        }
 }
