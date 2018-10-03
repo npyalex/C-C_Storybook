@@ -147,11 +147,14 @@ function draw() {
           drawBorders(x,y);
 
           // Display the image at the center of each quadrant of the screen.
-          imageMode(CENTER);
-          image(imgA, width/4, height/4, imgA.width, imgA.height/8);
-          image(imgB, (3*width)/4, height/4, imgB.width/8, imgB.height/8);
-          image(imgC, width/4, (3*height)/4, imgC.width/8, imgC.height/8);
-          image(imgD, (3*width)/4, (3*height)/4, imgD.width/8, imgD.height/8);
+          imageMode(CENTER,CENTER);
+          image(imgA, width/4, height/4, imgA.width/2, imgA.height/2);
+          image(imgB, (3*width)/4, height/4, imgB.width/2, imgB.height/2);
+          image(imgC, width/4, (3*height)/4, imgC.width/2, imgC.height/2);
+          image(imgD, (3*width)/4, (3*height)/4, imgD.width/2, imgD.height/2);
+          textAlign(CENTER);
+          textSize(16);
+          text("What's your picture?", width/2, height/2);
 
           // Save the images
           if(userClicked == true){
@@ -199,7 +202,8 @@ function draw() {
           text(cptB, width/2, 0, bW, bH);
           text(cptC, 0, height/2, bW, bH);
           text(cptD, width/2, height/2, bW, bH);
-
+          textSize(16);
+          text("What's your caption?", width/2, height/2);
           // Save the captions
           if(userClicked == true){
                // User clicks screen - check which quadrant.
@@ -225,7 +229,7 @@ function draw() {
           background(255);
           textAlign(CENTER);
           textSize(16);
-          text("Tap to reveal story page", width/2, height/2);
+          text("Tap to reveal your story page", width/2, height/2);
 
           if(userClicked){
                nextScreen();
@@ -236,13 +240,13 @@ function draw() {
           // Final display boundaries
 
           strokeWeight(0);
-          fill(200);
+          fill(255);
           rect (0,0,width,(height*0.75)); // top, 3/4 of the screen
           rect (0,(height*0.75),width,y); //bottom
 
           // Draw the final image & text
           imageMode(CENTER);
-          image(storyImg, width/2, (3*height)/8, storyImg.width/8, storyImg.height/8);
+          image(storyImg, width/2, (3*height)/8, storyImg.width, storyImg.height);
 
           fill(0);
           textAlign(CENTER);
