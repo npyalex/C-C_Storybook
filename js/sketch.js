@@ -126,23 +126,23 @@ function mousePressed() {
         } else if((x > width/2) && (y < height/2)){
             // Second Quadrant Top Right - change q2Clicked
             q2Clicked = true;
-            q2Clicked = false;
+            q1Clicked = false;
             q3Clicked = false;
             g4Clicked = false;
 
         } else if((x < width/2) && (y > height/2)){
             // Third Quadrant Bottom Left - change q3Clicked
             q3Clicked = true;
+            q1Clicked = false;
             q2Clicked = false;
-            q3Clicked = false;
             g4Clicked = false;
 
         } else {
             // Fourth Quadrant Bottom Right - change q4Clicked
             q4Clicked = true;
+            q1Clicked = false;
             q2Clicked = false;
-            q3Clicked = false;
-            g4Clicked = false;
+            g3Clicked = false;
         }
 }
 
