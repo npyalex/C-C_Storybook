@@ -8,7 +8,7 @@ var mouseIsClickable = false;
 var userClicked = false;
 
 var canvas;
-var img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15;
+var img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16;
 var cpt1, cpt2, cpt3, cpt4, cpt5, cpt6, cpt7, cpt8, cpt9, cpt10, cpt11, cpt12;
 var imgBank = []; // Array for the image prompts
 var wrdBank = []; // Array for the word prompts
@@ -35,6 +35,7 @@ function preload() {
     img13 = loadImage('image-13.jpg');
     img14 = loadImage('image-14.jpg');
     img15 = loadImage('image-15.jpg');
+    img16 = loadImage('image-16.jpg');
 }
 
 /* Canvas is the size of the window */
@@ -61,6 +62,7 @@ function setup() {
      arr.push(img13);
      arr.push(img14);
      arr.push(img15);
+     arr.push(img16);
     
      print('Array is this long ' + (arr.length).toString());
 
@@ -232,12 +234,9 @@ function draw() {
 
      if (screenState == 4) { //fourth screen. show the images & text you picked
           // Final display boundaries
-<<<<<<< HEAD
+
           strokeWeight(0);
           fill(200);
-=======
-          fill(255);
->>>>>>> 72eed891dde190df78ce5d51b83fe59c850a6743
           rect (0,0,width,(height*0.75)); // top, 3/4 of the screen
           rect (0,(height*0.75),width,y); //bottom
 
