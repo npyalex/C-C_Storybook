@@ -140,11 +140,12 @@ function draw() {
           image(title,x,y/2,title.width,title.height);
          textAlign(CENTER);
          fill(0);
-         textSize(24);
+         textSize(52);
          image(startButton,x,y,startButton.width,startButton.height);
         //  ellipse (x,y,100,100); //circle at x,y,width,height
         //  fill (0,255,0); //green
-        text("Let's all make a storybook! Tap START to do your part!",x,height*0.65);
+        text("Let's all make a storybook!",x,height*0.6);
+         text("Tap START to do your part!",x,height*0.65);
           if (diameter < radius) {
                mouseIsClickable = true;
           } else {
@@ -180,7 +181,7 @@ function draw() {
           image(imgD, (3*width)/4, (3*height)/4, imgD.width/2, imgD.height/2);
           textAlign(CENTER);
           fill(0);
-          textSize(16);
+          textSize(28);
           text("Choose a picture for your page", width/2, height/2);
 
           // Save the images
@@ -224,12 +225,12 @@ function draw() {
           // Display the text at the center of each quadrant of the screen.
           fill(0);
           textAlign(CENTER, CENTER);
-          textSize(12);
+          textSize(26);
           text(cptA, 0, 0, bW, bH);
           text(cptB, width/2, 0, bW, bH);
           text(cptC, 0, height/2, bW, bH);
           text(cptD, width/2, height/2, bW, bH);
-          textSize(16);
+          textSize(28);
           text("Choose a caption for your picture", width/2, height/2);
           // Save the captions
           if(userClicked == true){
@@ -255,8 +256,9 @@ function draw() {
           // Blank screen - Tap this screen to reveal story page
           background(255);
           textAlign(CENTER);
-          textSize(16);
-          text("Lay your page down with the others. Tap when you're ready to read!", width/2, height/2);
+          textSize(38);
+          text("Lay your page down with the others.",width/2,height*0.45);
+         text("Tap when you're all ready to read together!", width/2, height*0.5);
 
           if(userClicked){
                nextScreen();
@@ -276,8 +278,9 @@ function draw() {
           image(storyImg, width/2, (3*height)/8, storyImg.width, storyImg.height);
 
           fill(0);
+          textSize(32);
           textAlign(CENTER);
-          text(storyCpt, width/2, (7*height)/8);
+          text(storyCpt, width/2, (y*1.25));
      }
 }
 
