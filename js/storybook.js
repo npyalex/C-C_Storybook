@@ -363,7 +363,7 @@ function mousePressed() {
             q3Clicked = true;
             q1Clicked = false;
             q2Clicked = false;
-            g3Clicked = false;
+            g4Clicked = false;
 
         } else {
             // Fourth Quadrant Bottom Right - change q4Clicked
