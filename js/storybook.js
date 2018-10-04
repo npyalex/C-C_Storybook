@@ -12,9 +12,8 @@ var img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, i
 var title;
 var startButton;
 var cpt1, cpt2, cpt3, cpt4, cpt5, cpt6, cpt7, cpt8, cpt9, cpt10, cpt11, cpt12;
-var imgBank = []; // Array for the image prompts
 var wrdBank = []; // Array for the word prompts
-var arr = []; // A test array
+var arr = []; // Array for image prompts
 var a, b, c, d, e, f, g, h; // Random index based on arr length
 var storyImg; // The user's image choice
 var storyCpt; // The user's caption choice
@@ -49,8 +48,7 @@ function setup() {
      ellipseMode(RADIUS);
      screenState = 0;
 
-     /* Test array functionality
-        - Use a loop */
+     /* Image Array */
      arr.push(img1);
      arr.push(img2);
      arr.push(img3);
@@ -67,7 +65,7 @@ function setup() {
      arr.push(img14);
      arr.push(img15);
      arr.push(img16);
-    
+
      print('Array is this long ' + (arr.length).toString());
 
      // Generate a random index for the image to be displayed -- index will be between 0 and lenght - 1
@@ -111,7 +109,7 @@ function setup() {
      wrdBank.push("They didn't have fun.");
      wrdBank.push("The princess was happy.");
      wrdBank.push("The dragon was happy.");
-    
+
      print('Word Bank is this long ' + (wrdBank.length).toString());
 
      // Generate a random index for the captions
@@ -219,17 +217,17 @@ function draw() {
           // Draw the rectangle borders
           drawBorders(x,y);
 
-          var bW = width/2;
+          var bW = int((3*width)/8);
           var bH = height/2;
 
           // Display the text at the center of each quadrant of the screen.
           fill(0);
           textAlign(CENTER, CENTER);
-          textSize(26);
-          text(cptA, 0, 0, bW, bH);
-          text(cptB, width/2, 0, bW, bH);
-          text(cptC, 0, height/2, bW, bH);
-          text(cptD, width/2, height/2, bW, bH);
+          textSize(48);
+          text(cptA, (width/16), 0, bW, bH);
+          text(cptB, (9*width)/16, 0, bW, bH);
+          text(cptC, (width/16), height/2, bW, bH);
+          text(cptD, (9*width)/16, height/2, bW, bH);
           textSize(28);
           text("Choose a caption for your picture", width/2, height/2);
           // Save the captions
@@ -258,7 +256,7 @@ function draw() {
           textAlign(CENTER);
           textSize(38);
           text("Lay your page down with the others.",width/2,height*0.45);
-         text("Tap when you're all ready to read together!", width/2, height*0.5);
+          text("Tap when you're all ready to read together!", width/2, height*0.5);
 
           if(userClicked){
                nextScreen();
@@ -278,9 +276,9 @@ function draw() {
           image(storyImg, width/2, (3*height)/8, storyImg.width, storyImg.height);
 
           fill(0);
-          textSize(32);
+          textSize(60);
           textAlign(CENTER);
-          text(storyCpt, width/2, (y*1.25));
+          text(storyCpt, width/8, (y*1.25), (3*width)/4, (height/4));
      }
 }
 
