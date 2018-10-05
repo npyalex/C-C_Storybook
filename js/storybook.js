@@ -188,15 +188,19 @@ function draw() {
                if(q1Clicked){
                     // Save imgA
                     storyImg = imgA;
+                    print('imgA');
                } else if(q2Clicked){
                     // Save imgB
                     storyImg = imgB;
+                    print('imgB');
                } else if(q3Clicked){
                     // Save imgC
                     storyImg = imgC;
+                    print('imgC');
                } else if(q4Clicked){
                     // Save imgD
                     storyImg = imgD;
+                    print('imgD');
                }
                nextScreen();
           }
@@ -236,15 +240,19 @@ function draw() {
                if(q1Clicked){
                     // Save cptA
                     storyCpt = cptA;
+                    print('cptA');
                } else if(q2Clicked){
                     // Save cptB
                     storyCpt = cptB;
+                    print('cptB');
                } else if(q3Clicked){
                     // Save cptC
                     storyCpt = cptC;
+                    print('cptC');
                } else if(q4Clicked){
                     // Save cptD
                     storyCpt = cptD;
+                    print('cptD');
                }
                nextScreen();
           }
@@ -283,10 +291,12 @@ function draw() {
 }
 
 /* Track the user's mouse clicks */
-function mouseClicked(){ // RN this is tracking whether the user has clicked ever - ought to track an actual click
+function mouseReleased(){ // RN this is tracking whether the user has clicked ever - ought to track an actual click
      if ((userClicked == false) && (mouseIsClickable)) {
           userClicked = true;
      }
+     // Return false to prevent interference from different browser function presets
+     return false;
 }
 
 /* A functon to make the canvas responsive to the screen */
